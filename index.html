@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Mine Sweeper</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body onload="onInIt()">
-    <table>
-      <tbody class="board-container">
-
-      </tbody>
-    </table>
-
-
-
-
-
-
-
-
-    <script src="util.js"></script>
-    <script src="script.js"></script>
-  </body>
+<html lang="en">
+	<head>
+		<title>Mine Sweeper</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nabla:EDPT,EHLT@176,2&family=Rubik+Mono+One&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body onload="onInIt()">
+		<div class="design">
+			<h1>Mine Sweeper</h1>
+			<table>
+				<tbody class="board-container"></tbody>
+			</table>
+		</div>
+		<div class="modal">
+			<div class="modal-content">
+				<h2 class="game-message"></h2>
+				<button class="restart-button" onclick="onRestart()">Restart Game</button>
+			</div>
+		</div>
+		<script src="util.js"></script>
+		<script src="script.js"></script>
+	</body>
 </html>
