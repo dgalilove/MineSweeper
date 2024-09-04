@@ -13,6 +13,9 @@
 	<body onload="onInIt()">
 		<div class="design">
 			<h1>Mine Sweeper</h1>
+			<div class="lives-container">
+				<span class="lives">❤️❤️❤️</span>
+			</div>
 			<table>
 				<tbody class="board-container"></tbody>
 			</table>
@@ -20,7 +23,9 @@
 		<div class="modal">
 			<div class="modal-content">
 				<h2 class="game-message"></h2>
-				<button class="restart-button" onclick="onRestart()">Restart Game</button>
+				<button class="restart-button" onclick="onRestart()">
+					Restart Game
+				</button>
 			</div>
 		</div>
 		<script src="util.js"></script>
