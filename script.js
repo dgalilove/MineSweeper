@@ -1,13 +1,13 @@
 "use strict"
 
-const MINE = "*"
+const MINE = "💣"
 const FLAG = "🏴‍☠️"
 
 var gFirstClick = true
 var gBoard
 var gLevel = {
-	SIZE: 4,
-	MINES: 2,
+	SIZE: 12,
+	MINES: 32,
 }
 var gGame = {
 	isOn: false,
@@ -95,9 +95,9 @@ function onRestart() {
   gGame.isOn = true
   gGame.shownCount = 0
   gGame.markedCount = 0
+  gFirstClick = true 
   onInIt() 
 }
-
 
 
 //̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶//̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶//̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶
@@ -111,7 +111,6 @@ function onCellClicked(elCell, i, j) {
 
   if (cell.isShown || cell.isMarked) return
 
-  
   if (gFirstClick) {
     gFirstClick = false
     placeMines(i, j) 
@@ -164,18 +163,17 @@ function onCellMarked(elCell, i, j) {
 
 
 function placeMines(i, j) {
-  var minesPlaced = 0;
+  var minesPlaced = 0
   while (minesPlaced < gLevel.MINES) {
-    const idxI = randomIdx();
-    const idxJ = randomIdx();
+    const idxI = randomIdx()
+    const idxJ = randomIdx()
 
-    // Ensure the mine is not placed on the clicked cell
     if ((idxI === i && idxJ === j) || gBoard[idxI][idxJ].isMine) {
-      continue;
+      continue
     }
 
     gBoard[idxI][idxJ].isMine = true;
-    minesPlaced++;
+    minesPlaced++
   }
 }
 
