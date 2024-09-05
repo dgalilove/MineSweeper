@@ -75,25 +75,28 @@ function onCellClicked(elCell, i, j) {
 		renderMinesNegsCount(gBoard)
 		startTimer()
 	}
+	if(gGame.isOn){
 
-	if (gBoard[i][j].isShown || gBoard[i][j].isMarked) return
-
-	gBoard[i][j].isShown = true
-	elCell.classList.remove("hide")
-
-	if (gBoard[i][j].isMine) {
-		elCell.innerText = MINE
-		gGame.lives--
-		livesCount()
-		if (gGame.lives === 0) gameOver()
-	} else {
-		elCell.innerText = gBoard[i][j].minesAroundCount
-		if (gBoard[i][j].minesAroundCount === 0) revealNeighbors(i, j, gBoard)
+		if (gBoard[i][j].isShown || gBoard[i][j].isMarked) return
+	
+		gBoard[i][j].isShown = true
+		elCell.classList.remove("hide")
+	
+		if (gBoard[i][j].isMine) {
+			elCell.innerText = MINE
+			gGame.lives--
+			livesCount()
+			if (gGame.lives === 0) gameOver()
+		} else {
+			elCell.innerText = gBoard[i][j].minesAroundCount
+			if (gBoard[i][j].minesAroundCount === 0) revealNeighbors(i, j, gBoard)
+		}
+	
+		gGame.shownCount++
+		checkGameOver()
+	}
 	}
 
-	gGame.shownCount++
-	checkGameOver()
-}
 
 function onCellMarked(elCell, i, j) {
 	if (gBoard[i][j].isShown) return
