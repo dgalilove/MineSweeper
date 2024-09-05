@@ -1,3 +1,4 @@
+/* Body takes up the full screen and centers content */
 body {
   background-color: #594545fc;
   margin: 0;
@@ -5,30 +6,89 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 100vh;
 }
 
-h1 {
-  font-family: "Rubik Mono One", monospace;
-  text-align: center;
-  font-size: 40px;
-  color: #9e7676;
-  margin-bottom: 90px;
-}
-
+/* Overall design container */
 .design {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #fff8ea;
-  padding: 80px;
+  padding: 40px;
   border-radius: 15px;
   box-shadow: 0 8px 30px #fff8ea67;
+  max-width: 90vw;
 }
 
+/* Level buttons on the same row */
+.level-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.level-button {
+  background-color: #9e7676;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.level-button:hover {
+  background-color: #d6a5a5;
+}
+
+/* Game controls container */
+.game-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Hearts container */
+.lives-container {
+  margin-right: 20px;
+}
+
+.heart-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+/* Smiley Button */
+.smiley-button {
+  font-size: 30px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.timer {
+  font-size: 24px;
+  color: #9e7676;
+  margin-left: 20px;
+}
+
+/* Styling for h1 (title) */
+h1 {
+  font-family: "Rubik Mono One", monospace;
+  text-align: center;
+  font-size: 40px;
+  color: #9e7676;
+  margin-bottom: 20px;
+}
+
+/* Table (Grid) styling */
 table {
-  margin: 0;
-  padding: 0 10px;
+  margin: 20px 0;
 }
 
 table,
@@ -52,9 +112,23 @@ td {
   border: solid 2px #9e7676;
 }
 
+/* Game won message */
+.game-won-message {
+  display: none;
+  font-size: 30px;
+  color: green;
+  margin-top: 20px;
+  font-family: 'Rubik Mono One', monospace;
+}
+
+.game-won-message.show {
+  display: block;
+}
+
+/* Modal Styling */
 .modal {
-  opacity: 0; 
-  visibility: hidden; 
+  opacity: 0;
+  visibility: hidden;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -62,15 +136,16 @@ td {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 1s ease, visibility 0s 1s; 
+  transition: opacity 1s ease;
 }
 
 .modal.show {
-  opacity: 1; 
-  visibility: visible; 
-  transition: opacity 1s ease, visibility 0s 0s; 
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease, visibility 0s 0s;
 }
 
 .modal-content {
@@ -80,7 +155,7 @@ td {
   border-radius: 10px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
   text-align: center;
-  transition: 2s ease;
+  transition: 1s ease;
 }
 
 .game-message {

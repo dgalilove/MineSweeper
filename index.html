@@ -1,34 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>Mine Sweeper</title>
-		<link rel="stylesheet" href="style.css" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Nabla:EDPT,EHLT@176,2&family=Rubik+Mono+One&display=swap"
-			rel="stylesheet"
-		/>
-	</head>
-	<body onload="onInIt()">
-		<div class="design">
-			<h1>Mine Sweeper</h1>
-			<div class="lives-container">
-				<span class="lives">❤️❤️❤️</span>
-			</div>
-			<table>
-				<tbody class="board-container"></tbody>
-			</table>
-		</div>
-		<div class="modal">
-			<div class="modal-content">
-				<h2 class="game-message"></h2>
-				<button class="restart-button" onclick="onRestart()">
-					Restart Game
-				</button>
-			</div>
-		</div>
-		<script src="util.js"></script>
-		<script src="script.js"></script>
-	</body>
+<html>
+    <head>
+        <title>Mine Sweeper</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nabla:EDPT,EHLT@176,2&family=Rubik+Mono+One&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body onload="onInIt()">
+        <div class="design">
+            <h1>Mine Sweeper</h1>
+            <div class="level-buttons-container">
+                <button class="level-button" onclick="setLevelSize(4)">Level 1</button>
+                <button class="level-button" onclick="setLevelSize(8)">Level 2</button>
+                <button class="level-button" onclick="setLevelSize(12)">Level 3</button>
+            </div>
+            <div class="game-controls">
+                <div class="lives-container">
+                    <span class="lives"></span>
+                </div>
+                <button class="smiley-button" onclick="onRestart()">😊</button>
+                <span class="timer">0</span>
+            </div>
+            <table>
+                <tbody class="board-container"></tbody>
+            </table>
+            <div class="game-won-message">You Win! 😎</div>
+        </div>
+        <script src="util.js"></script>
+        <script src="script.js"></script>
+    </body>
 </html>
