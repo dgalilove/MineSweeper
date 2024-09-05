@@ -1,170 +1,179 @@
+
 body {
-	background-color: #594545fc;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
+  background-color: #594545fc;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .design {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: #fff8ea;
-	padding: 40px;
-	border-radius: 15px;
-	box-shadow: 0 8px 30px #fff8ea67;
-	max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff8ea;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px #fff8ea67;
+  max-width: 90vw;
 }
 
 .level-buttons-container {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .level-button {
-	background-color: #9e7676;
-	color: white;
-	border: none;
-	padding: 10px 20px;
-	margin: 0 10px;
-	cursor: pointer;
-	border-radius: 5px;
-	font-size: 16px;
+  background-color: #9e7676;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 .level-button:hover {
-	background-color: #d6a5a5;
+  background-color: #d6a5a5;
 }
 
 .game-controls {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .lives-container {
-	display: flex;
-	align-items: center;
-	margin-right: 20px;
+  margin-right: 20px;
 }
 
 .smiley-button {
-	font-size: 30px;
-	border: none;
-	background: none;
-	cursor: pointer;
-	margin-right: 20px;
+  font-size: 24px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 20px;
 }
 
-.timer {
-	font-size: 24px;
-	color: #9e7676;
+.timer-container {
+  margin-left: 20px;
+  font-size: 24px;
 }
+
+
 
 .heart-icon {
-	width: 30px;
-	height: 30px;
-	margin-right: 5px;
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+
+
+.timer {
+  font-size: 24px;
+  color: #9e7676;
+  margin-left: 20px;
 }
 
 h1 {
-	font-family: "Rubik Mono One", monospace;
-	text-align: center;
-	font-size: 40px;
-	color: #9e7676;
-	margin-bottom: 20px;
+  font-family: "Rubik Mono One", monospace;
+  text-align: center;
+  font-size: 40px;
+  color: #9e7676;
+  margin-bottom: 20px;
 }
 
 table {
-	margin: 20px 0;
+  margin: 20px 0;
 }
 
 table,
 td {
-	text-align: center;
+  text-align: center;
 }
 
 .cell {
-	border: solid 2px #9e7676;
-	width: 35px;
-	height: 35px;
-	font-size: 24px;
-	font-weight: bold;
-	cursor: pointer;
-	background-color: #594545;
-	color: white;
+  border: solid 2px #9e7676;
+  width: 35px;
+  height: 35px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #594545;
+  color: white;
 }
 
 .hide {
-	background-color: #594545;
-	border: solid 2px #9e7676;
+  background-color: #594545;
+  border: solid 2px #9e7676;
 }
 
 .game-won-message {
-	display: none;
-	font-size: 30px;
-	color: green;
-	margin-top: 20px;
-	font-family: "Rubik Mono One", monospace;
+  display: none;
+  font-size: 30px;
+  color: green;
+  margin-top: 20px;
+  font-family: 'Rubik Mono One', monospace;
 }
 
 .game-won-message.show {
-	display: block;
+  display: block;
 }
 
 .modal {
-	opacity: 0;
-	visibility: hidden;
-	position: fixed;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.8);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transition: opacity 1s ease;
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease;
 }
 
 .modal.show {
-	opacity: 1;
-	visibility: visible;
-	transition: opacity 1s ease, visibility 0s 0s;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease, visibility 0s 0s;
 }
 
 .modal-content {
-	background-color: #fff8ea;
-	padding: 20px;
-	border: 3px solid #9e7676;
-	border-radius: 10px;
-	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-	text-align: center;
-	transition: 1s ease;
+  background-color: #fff8ea;
+  padding: 20px;
+  border: 3px solid #9e7676;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: 1s ease;
 }
 
 .game-message {
-	color: #9e7676;
-	font-size: 24px;
-	margin-bottom: 20px;
+  color: #9e7676;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .restart-button {
-	background-color: #9e7676;
-	color: white;
-	padding: 10px 20px;
-	border: none;
-	cursor: pointer;
-	font-size: 16px;
-	border-radius: 5px;
+  background-color: #9e7676;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
 }
 
 .restart-button:hover {
-	background-color: #d6a5a5;
+  background-color: #d6a5a5;
 }

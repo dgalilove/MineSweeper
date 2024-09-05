@@ -2,9 +2,6 @@
 
 const MINE = "💣"
 const FLAG = "🏴‍☠️"
-const RESET = "😊"
-const LOSE = "😢"
-const WIN = "😎"
 
 var gFirstClick = true
 var gBoard
@@ -27,7 +24,7 @@ function onInIt() {
 	gBoard = createBoard()
 	renderBoard(gBoard)
 	livesCount()
-	updateSmiley(RESET)
+	updateSmiley("reset")
 	resetTimer()
 	hideVictory()
 }
@@ -75,13 +72,12 @@ function onCellClicked(elCell, i, j) {
 		renderMinesNegsCount(gBoard)
 		startTimer()
 	}
-	if(gGame.isOn){
-
+	if (gGame.isOn) {
 		if (gBoard[i][j].isShown || gBoard[i][j].isMarked) return
-	
+
 		gBoard[i][j].isShown = true
 		elCell.classList.remove("hide")
-	
+
 		if (gBoard[i][j].isMine) {
 			elCell.innerText = MINE
 			gGame.lives--
@@ -89,14 +85,13 @@ function onCellClicked(elCell, i, j) {
 			if (gGame.lives === 0) gameOver()
 		} else {
 			elCell.innerText = gBoard[i][j].minesAroundCount
-			if (gBoard[i][j].minesAroundCount === 0) revealNeighbors(i, j, gBoard)
+			if (gBoard[i][j].minesAroundCount === 0) revealNegs(i, j, gBoard)
 		}
-	
+
 		gGame.shownCount++
 		checkGameOver()
 	}
-	}
-
+}
 
 function onCellMarked(elCell, i, j) {
 	if (gBoard[i][j].isShown) return
@@ -120,13 +115,13 @@ function onCellMarked(elCell, i, j) {
 
 function livesCount() {
 	const elLives = document.querySelector(".lives")
-	elLives.innerHTML = "" 
+	elLives.innerHTML = ""
 
 	for (var i = 0; i < gGame.lives; i++) {
 		const elHeart = document.createElement("img")
-		elHeart.src = "1f90e.png"
+		elHeart.src = "img/1f90e.png"
 		elHeart.classList.add("heart-icon")
-		elLives.appendChild(elHeart)
+		elLives.appendChild(elHeart) // note to self : If the given child is a DocumentFragment, the entire contents of the DocumentFragment are moved into the child list of the specified parent node.
 	}
 }
 
@@ -134,7 +129,7 @@ function resetHeart() {
 	if (gLevel.SIZE === 4) {
 		gGame.lives = 2
 	} else {
-		gGame.lives = 3 
+		gGame.lives = 3
 	}
 	livesCount()
 }
@@ -153,7 +148,7 @@ function setLevelSize(size) {
 		gGame.lives = 3
 	}
 
-	onRestart() 
+	onRestart()
 }
 
 function onRestart() {
@@ -161,52 +156,63 @@ function onRestart() {
 	gGame.shownCount = 0
 	gGame.markedCount = 0
 	gFirstClick = true
-	resetHeart() 
+	resetHeart()
 	resetTimer()
-	onInIt() 
+	onInIt()
 }
 
 function gameOver() {
 	gGame.isOn = false
-	updateSmiley(LOSE) 
-	stopTimer() 
+	updateSmiley("lose")
+	stopTimer()
 }
 
 function checkGameOver() {
-	const totalCells = gLevel.SIZE * gLevel.SIZE
-	const regularCells = totalCells - gLevel.MINES
+	var shownOrFlaggedCells = 0
+	var totalCells = gLevel.SIZE * gLevel.SIZE
 
-	if (gGame.shownCount === regularCells) {
-		var correctFlagMines = 0
-		var noFlagShownMines = 0
+	for (var i = 0; i < gLevel.SIZE; i++) {
+		for (var j = 0; j < gLevel.SIZE; j++) {
+			var cell = gBoard[i][j]
 
-		for (var i = 0; i < gLevel.SIZE; i++) {
-			for (var j = 0; j < gLevel.SIZE; j++) {
-				const cell = gBoard[i][j]
-				if (cell.isMine && cell.isMarked) {
-					correctFlagMines++
-				}
-				if (cell.isMine && cell.isShown && !cell.isMarked) {
-					noFlagShownMines++
-				}
+			if (cell.isShown || cell.isMarked) {
+				shownOrFlaggedCells++
 			}
 		}
-
-		if (
-			correctFlagMines + noFlagShownMines === gLevel.MINES &&
-			gGame.lives > 0
-		) {
-			updateSmiley(WIN)
-			gGame.isOn = false
-			stopTimer() 
-			showVictory() 
-		}
 	}
+
+	if (shownOrFlaggedCells === totalCells && gGame.lives > 0) {
+		updateSmiley("win")
+		gGame.isOn = false
+		stopTimer()
+		showVictory()
+		return true
+	}
+
+	if (gGame.lives === 0) {
+		gameOver()
+		return true
+	}
+
+	return false
 }
 
-function updateSmiley(smiley) {
+function updateSmiley(state) {
 	const smileyButton = document.querySelector(".smiley-button")
-	smileyButton.innerText = smiley
+	switch (state) {
+		case "win":
+			smileyButton.innerHTML =
+				'<img src="img/winner.png" alt="Cool Face" width="60">'
+			break
+		case "lose":
+			smileyButton.innerHTML =
+				'<img src="img/dead.png" alt="Sad Face" width="60">'
+			break
+		default:
+			smileyButton.innerHTML =
+				'<img src="img/smiley.png" alt="Smiley Face" width="60">'
+			break
+	}
 }
 
 //̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶//̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶//̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶/̶
@@ -246,60 +252,27 @@ function setMinesNegsCount(cellI, cellJ, mat) {
 	return negsCount
 }
 
-function revealNeighbors(cellI, cellJ, mat) {
+function revealNegs(cellI, cellJ, mat) {
 	for (var i = cellI - 1; i <= cellI + 1; i++) {
 		if (i < 0 || i >= mat.length) continue
 		for (var j = cellJ - 1; j <= cellJ + 1; j++) {
 			if (j < 0 || j >= mat[i].length) continue
 			if (i === cellI && j === cellJ) continue
 
-			var neighborCell = mat[i][j]
-			var elNeighborCell = document.querySelector(`.cell-${i}-${j}`)
+			var negCell = mat[i][j]
+			var elNegCell = document.querySelector(`.cell-${i}-${j}`)
 
-			if (!neighborCell.isShown && !neighborCell.isMarked) {
-				neighborCell.isShown = true
+			if (!negCell.isShown && !negCell.isMarked) {
+				negCell.isShown = true
 				gGame.shownCount++
 
-				if (neighborCell.minesAroundCount === 0) {
-					revealNeighbors(i, j, mat) // Recursively reveal neighbors
+				if (negCell.minesAroundCount === 0) {
+					revealNegs(i, j, mat)
 				}
 
-				elNeighborCell.innerText = neighborCell.minesAroundCount
-				elNeighborCell.classList.remove("hide")
+				elNegCell.innerText = negCell.minesAroundCount
+				elNegCell.classList.remove("hide")
 			}
 		}
 	}
-}
-
-function randomIdx() {
-	return Math.floor(Math.random() * gLevel.SIZE)
-}
-
-function startTimer() {
-	gGame.seconds = 0
-	gGame.timer = setInterval(() => {
-		gGame.seconds++
-		document.querySelector(".timer").innerText = gGame.seconds
-	}, 1000)
-}
-
-function stopTimer() {
-	clearInterval(gGame.timer)
-	gGame.timer = null
-}
-
-function resetTimer() {
-	stopTimer()
-	gGame.seconds = 0
-	document.querySelector(".timer").innerText = gGame.seconds
-}
-
-function showVictory() {
-	const elVictory = document.querySelector(".game-won-message")
-	elVictory.classList.add("show")
-}
-
-function hideVictory() {
-	const elVictory = document.querySelector(".game-won-message")
-	elVictory.classList.remove("show")
 }
